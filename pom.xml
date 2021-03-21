@@ -1,0 +1,165 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>SSM_HRMS</groupId>
+  <artifactId>SSM_HRMS</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>SSM_HRMS Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+
+
+  <properties>
+    <spring-version>4.2.9.RELEASE</spring-version>
+    <junit-version>4.12</junit-version>
+    <servlet-api>3.1.0</servlet-api>
+    <jsp-api.version>2.1</jsp-api.version>
+    <jstl-version>1.2</jstl-version>
+    <mysql-version>3.1.14</mysql-version>
+    <mybatis-version>3.4.1</mybatis-version>
+    <mybatis-spring-version>1.3.1</mybatis-spring-version>
+    <standard-version>1.1.2</standard-version>
+    <jackson-databind-version>2.8.11</jackson-databind-version>
+  </properties>
+
+
+  <dependencies>
+    <!--Spring-->
+    <!--核心依赖包-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <!--使用Spring ApplicationContext特性时所需的全部类-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <!--IOC容器必备jar包-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <!--自动载入Web ApplicationContext 特性的类-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <!--Spring 对JDBC 数据访问进行封装的所有类-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+    <!--框架的Servlets，Web MVC框架，控制器和视图支持-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+
+    <!-- mysql -->
+    <!--java与数据库的连接-->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql-version}</version>
+    </dependency>
+
+    <!-- mybatis -->
+    <!-- mybatis版本 -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis-version}</version>
+    </dependency>
+    <!-- mybatis与spring框架结合 -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+      <version>${mybatis-spring-version}</version>
+    </dependency>
+
+    <!-- jsp -->
+    <!--action相关，get，post方法相关-->
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>jsp-api</artifactId>
+      <version>${jsp-api.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!--标签库-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>${jstl-version}</version>
+    </dependency>
+    <!--标签库-->
+    <dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>${standard-version}</version>
+    </dependency>
+
+    <!-- servlet -->
+    <!--识别servlet对象，用到HttpServletRequest和HttpServletResponse等对象-->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>${servlet-api}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- json -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind-version}</version>
+    </dependency>
+    <!--测试类-->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring-version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>SSM_HRMS</finalName>
+    <plugins>
+      <!--周期性地查看web应用，当应用有修改时，会立即重部署-->
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>9.4.5.v20170502</version>
+      </plugin>
+      <!--自动生成mybatis代码-->
+      <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>1.3.2</version>
+        <configuration>
+          <verbose>true</verbose>
+          <overwrite>true</overwrite>
+        </configuration>
+      </plugin>
+      <!--告诉maven使用的是jdk几-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
